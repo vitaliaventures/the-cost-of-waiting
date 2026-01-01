@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Waiting Cost Calculator – How Much Does Waiting Cost You?</title>
+
+  <meta name="description" content="Calculate how much money you lose by waiting. A simple waiting cost calculator that shows the real cost of delay in money and time.">
+  <meta name="keywords" content="waiting cost calculator, cost of waiting, opportunity cost calculator, time is money">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0b0b0b;
+      color: #ffffff;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      line-height: 1.6;
+      color: #cccccc;
+    }
+
+    .box {
+      background: #141414;
+      padding: 25px;
+      border-radius: 8px;
+      margin-top: 30px;
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+      font-size: 0.95rem;
+      color: #dddddd;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border-radius: 4px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 14px;
+      font-size: 1.1rem;
+      background: #ffffff;
+      color: #000000;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #e5e5e5;
+    }
+
+    .result {
+      margin-top: 30px;
+      font-size: 1.4rem;
+      text-align: center;
+    }
+
+    .big-number {
+      font-size: 2.6rem;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .note {
+      margin-top: 25px;
+      font-size: 0.9rem;
+      color: #999999;
+      text-align: center;
+    }
+
+    a {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Waiting Cost Calculator</h1>
+    <p>
+      Most people underestimate how expensive waiting really is.
+      This simple calculator shows how much money you may be losing
+      by delaying a decision.
+    </p>
+
+    <div class="box">
+      <label>
+        Money involved ($)
+        <input type="number" id="amount" placeholder="e.g. 10000">
+      </label>
+
+      <label>
+        Expected annual return (%)
+        <input type="number" id="return" placeholder="e.g. 8">
+      </label>
+
+      <label>
+        Time you are waiting (months)
+        <input type="number" id="months" placeholder="e.g. 12">
+      </label>
+
+      <button onclick="calculate()">Calculate waiting cost</button>
+
+      <div class="result" id="result" style="display:none;">
+        <div>You may be losing approximately:</div>
+        <div class="big-number" id="loss">$0</div>
+        <div>by doing nothing.</div>
+      </div>
+    </div>
+
+    <p class="note">
+      This is an estimation for educational purposes.
+      <br>
+      <a href="index.html">Back to The Cost of Waiting</a>
+    </p>
+  </div>
+
+  <script>
+    function calculate() {
+      const amount = parseFloat(document.getElementById("amount").value);
+      const rate = parseFloat(document.getElementById("return").value) / 100;
+      const months = parseFloat(document.getElementById("months").value);
+
+      if (isNaN(amount) || isNaN(rate) || isNaN(months)) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      const years = months / 12;
+      const loss = amount * rate * years;
+
+      document.getElementById("loss").innerText =
+        "$" + loss.toLocaleString(undefined, { maximumFractionDigits: 2 });
+
+      document.getElementById("result").style.display = "block";
+    }
+  </script>
+</body>
+</html>

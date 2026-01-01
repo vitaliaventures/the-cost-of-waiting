@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://luisfernando2025xt.github.io/The-Cost-of-Waiting/sitemap.xml
+

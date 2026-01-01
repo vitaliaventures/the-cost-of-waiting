@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Cost of Waiting – See How Much Money You Lose Every Day</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="See how much money you lose by waiting. This real-time cost of waiting calculator shows the hidden price of inaction in days, months, and years.">
+
+<link rel="canonical" href="https://luisfernando2025xt.github.io/The-Cost-of-Waiting/" />
+
+<style>
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #0b0b0b;
+    color: #ffffff;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 24px;
+}
+
+h1 {
+    font-size: clamp(30px, 4vw, 48px);
+    font-weight: 900;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    color: #b5b5b5;
+    font-size: 17px;
+    max-width: 720px;
+    margin-bottom: 36px;
+}
+
+.calculator {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 14px;
+    padding: 28px;
+}
+
+.field {
+    margin-bottom: 22px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    color: #aaa;
+    margin-bottom: 6px;
+}
+
+input, select {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #333;
+    background: #000;
+    color: #fff;
+}
+
+button {
+    width: 100%;
+    padding: 18px;
+    font-size: 17px;
+    font-weight: 800;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    background: #ffffff;
+    color: #000;
+    margin-top: 14px;
+}
+
+.results {
+    margin-top: 34px;
+    text-align: center;
+}
+
+.big-number {
+    font-size: clamp(40px, 7vw, 70px);
+    font-weight: 900;
+    margin-bottom: 6px;
+}
+
+.label {
+    color: #aaa;
+    font-size: 14px;
+}
+
+.breakdown {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 26px;
+    font-size: 15px;
+    color: #ccc;
+}
+
+.seo {
+    margin-top: 70px;
+    color: #d0d0d0;
+}
+
+.seo h2 {
+    margin-top: 42px;
+    font-size: 26px;
+    color: #fff;
+}
+
+footer {
+    margin-top: 90px;
+    padding: 28px 0;
+    border-top: 1px solid #222;
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>The Cost of Waiting</h1>
+<div class="subtitle">
+Every day you wait, you lose money. This calculator shows the real financial cost of delaying decisions,
+projects, or action — in real numbers, not motivation.
+</div>
+
+<div class="calculator">
+
+<div class="field">
+<label>Monthly income or revenue (USD)</label>
+<input type="number" id="income" placeholder="e.g. 5000">
+</div>
+
+<div class="field">
+<label>How long are you waiting?</label>
+<input type="number" id="delay" placeholder="e.g. 6">
+</div>
+
+<div class="field">
+<label>Time unit</label>
+<select id="unit">
+<option value="months">Months</option>
+<option value="days">Days</option>
+<option value="years">Years</option>
+</select>
+</div>
+
+<button onclick="calculate()">Show me the cost of waiting</button>
+
+<div class="results" id="results" style="display:none;">
+<div class="big-number" id="totalLost">$0</div>
+<div class="label">Total money lost by waiting</div>
+
+<div class="breakdown">
+<div id="perDay">$0 / day</div>
+<div id="perMonth">$0 / month</div>
+<div id="perYear">$0 / year</div>
+</div>
+</div>
+
+</div>
+
+<div class="seo">
+<h2>What is the cost of waiting?</h2>
+<p>
+The cost of waiting is the money you silently lose by delaying action. Even when nothing happens,
+time keeps charging interest against your potential.
+</p>
+
+<h2>Why waiting feels safe but is expensive</h2>
+<p>
+Most people delay decisions to avoid risk, but in reality waiting creates guaranteed losses.
+This calculator makes those invisible losses visible.
+</p>
+
+<h2>Who this tool is for</h2>
+<p>
+Entrepreneurs, professionals, freelancers, and decision-makers who want clarity instead of motivation.
+If time matters to you, waiting should scare you.
+</p>
+</div>
+
+<footer>
+Free cost of waiting calculator · Built for clarity, speed, and decisive action
+</footer>
+
+</div>
+
+<script>
+function calculate() {
+    const income = parseFloat(document.getElementById("income").value) || 3000;
+    const delay = parseFloat(document.getElementById("delay").value) || 1;
+    const unit = document.getElementById("unit").value;
+
+    let months = 0;
+    if (unit === "months") months = delay;
+    if (unit === "days") months = delay / 30;
+    if (unit === "years") months = delay * 12;
+
+    const totalLost = income * months;
+    const perMonth = income;
+    const perYear = income * 12;
+    const perDay = perYear / 365;
+
+    document.getElementById("totalLost").innerText = "$" + totalLost.toFixed(2);
+    document.getElementById("perDay").innerText = "$" + perDay.toFixed(2) + " / day";
+    document.getElementById("perMonth").innerText = "$" + perMonth.toFixed(2) + " / month";
+    document.getElementById("perYear").innerText = "$" + perYear.toFixed(2) + " / year";
+
+    document.getElementById("results").style.display = "block";
+}
+</script>
+
+</body>
+</html>
